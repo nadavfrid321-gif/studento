@@ -13,13 +13,16 @@ export function useAuth(): AuthState {
 
   useEffect(() => {
     let mounted = true;
+    console.log('[auth] init. URL=', window.location.href);
 
-    supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(({ data, error }) => {
+      console.log('[auth] getSession result', { session: data.session, error });
       if (!mounted) return;
       setState({ session: data.session, user: data.session?.user ?? null, loading: false });
     });
 
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[auth] state change', event, { hasSession: !!session });
       setState({ session, user: session?.user ?? null, loading: false });
     });
 
