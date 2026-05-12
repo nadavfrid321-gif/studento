@@ -1,0 +1,3 @@
+-- Optional seed for local dev. Production seed runs client-side in `useSeedCourses`
+-- on first login for each user. This file is for `supabase db reset` workflows
+-- and is only run locally.

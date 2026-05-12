@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    direction: rtl;
+  }
+
+  body {
+    @apply bg-surface text-on-surface font-body antialiased min-h-screen;
+    font-feature-settings: 'kern';
+    margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .card-level-1 {
+    @apply bg-surface-container-lowest border border-outline-variant rounded-lg transition-shadow duration-200;
+  }
+  .card-level-1:hover {
+    @apply shadow-card;
+  }
+  .progress-track {
+    @apply bg-outline-variant;
+  }
+  .progress-fill {
+    background-color: #10b981;
+  }
+  .progress-fill-upcoming {
+    background-color: #f59e0b;
+  }
+  .progress-fill-late {
+    background-color: #ba1a1a;
+  }
+  .badge-pending {
+    background-color: #f1f5f9;
+    color: #334155;
+  }
+  .badge-late {
+    background-color: #ffdad6;
+    color: #93000a;
+  }
+  .badge-soon {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  .folder-icon-outline {
+    color: #475569;
+  }
+  .folder-icon-inner {
+    color: #0d1c32;
+  }
+  .faculty-stripe-law {
+    border-right: 4px solid theme('colors.faculty-law');
+  }
+  .faculty-stripe-econ {
+    border-right: 4px solid theme('colors.faculty-econ');
+  }
+}
