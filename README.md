@@ -60,9 +60,17 @@ select cron.schedule(
 ```
 
 ### 5. פיצ'ר ייבוא AI
+הפונקציה תומכת בשני ספקים — בחר אחד דרך משתנה הסביבה `AI_PROVIDER`:
+
+**אופציה א' — Anthropic (Claude, ברירת מחדל):**
 - ב-Anthropic Console צור API key.
-- הגדר ב-Supabase: `supabase secrets set ANTHROPIC_API_KEY=sk-ant-...`
-- פריסה: `supabase functions deploy extract-task`
+- `supabase secrets set AI_PROVIDER=anthropic ANTHROPIC_API_KEY=sk-ant-...`
+
+**אופציה ב' — Google (Gemini 2.5 Pro):**
+- ב-Google AI Studio (https://aistudio.google.com/apikey) צור API key.
+- `supabase secrets set AI_PROVIDER=google GOOGLE_API_KEY=...`
+
+פריסה: `supabase functions deploy extract-task`
 
 ### 6. הרצה
 ```bash
