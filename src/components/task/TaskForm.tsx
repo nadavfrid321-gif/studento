@@ -24,7 +24,7 @@ function toDateInput(iso: string | null | undefined): string {
 export function TaskForm({ courseId, initial, onDone, onCancel }: Props) {
   const create = useCreateTask();
   const update = useUpdateTask();
-  const isEdit = !!initial;
+  const isEdit = !!initial?.id;
 
   const [type, setType] = useState<TaskType>(initial?.type ?? 'reading');
   const [title, setTitle] = useState(initial?.title ?? '');

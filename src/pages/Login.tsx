@@ -34,7 +34,7 @@ export function Login() {
         </div>
         <button
           type="button"
-          onClick={async () => { const { error } = await signInWithGoogle(); if (error) alert(error.message); }}
+          onClick={() => signInWithGoogle()}
           className="w-full flex items-center justify-center gap-sm bg-primary text-on-primary py-3 rounded-lg font-display text-title-sm hover:opacity-90 active:scale-95 transition-all"
         >
           <Icon name="login" />

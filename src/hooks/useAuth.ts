@@ -13,30 +13,25 @@ export function useAuth(): AuthState {
 
   useEffect(() => {
     let mounted = true;
-    console.log('[auth] init. URL=', window.location.href);
 
-    const hash = window.location.hash;
     const initSession = async () => {
+      const hash = window.location.hash;
       if (hash.includes('access_token')) {
         const params = new URLSearchParams(hash.slice(1));
         const access_token = params.get('access_token');
         const refresh_token = params.get('refresh_token');
-        console.log('[auth] found hash tokens, calling setSession');
         if (access_token && refresh_token) {
-          const { data, error } = await supabase.auth.setSession({ access_token, refresh_token });
-          console.log('[auth] setSession result err=', error ? JSON.stringify(error) : 'null', 'session=', data.session ? 'EXISTS' : 'NULL');
+          await supabase.auth.setSession({ access_token, refresh_token });
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       }
-      const { data, error } = await supabase.auth.getSession();
-      console.log('[auth] getSession err=', error ? JSON.stringify(error) : 'null', 'session=', data.session ? 'EXISTS user=' + data.session.user?.email : 'NULL');
+      const { data } = await supabase.auth.getSession();
       if (!mounted) return;
       setState({ session: data.session, user: data.session?.user ?? null, loading: false });
     };
     initSession();
 
-    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('[auth] state change event=', event, 'session=', session ? 'EXISTS user=' + session.user?.email : 'NULL');
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       setState({ session, user: session?.user ?? null, loading: false });
     });
 
